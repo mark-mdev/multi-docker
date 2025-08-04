@@ -14,7 +14,8 @@ jobs:
       - run: docker run -e CI=true markmdev/react-test npm test
 
       - name: Build production versions of images
-        run: docker build -t markmdev/multi-client ./client
-        run: docker build -t markmdev/multi-nginx ./nginx
-        run: docker build -t markmdev/multi-server ./server
-        run: docker build -t markmdev/multi-worker ./worker
+        run: |
+          docker build -t markmdev/multi-client ./client
+          docker build -t markmdev/multi-nginx ./nginx
+          docker build -t markmdev/multi-server ./server
+          docker build -t markmdev/multi-worker ./worker
