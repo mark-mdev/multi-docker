@@ -19,3 +19,10 @@ jobs:
           docker build -t markmdev/multi-nginx ./nginx
           docker build -t markmdev/multi-server ./server
           docker build -t markmdev/multi-worker ./worker
+
+      - name: Push images to Docker Hub
+        run: |
+          docker push markmdev/multi-client
+          docker push markmdev/multi-nginx
+          docker push markmdev/multi-server
+          docker push markmdev/multi-worker
