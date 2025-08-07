@@ -26,3 +26,15 @@ jobs:
           docker push markmdev/multi-nginx
           docker push markmdev/multi-server
           docker push markmdev/multi-worker
+
+      - name: Deploy to EB
+        uses: einaregilsson/beanstalk-deploy@v18
+        with:
+          application_name: multi-docker
+          environment_name: Multi-docker-env
+          existing_bucket_name: elasticbeanstalk-us-east-2-399672341471
+          region: us-east-2
+          bucket_path: docker-multi
+          version_label: ${{ github.sha }}
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
